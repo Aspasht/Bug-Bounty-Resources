@@ -1,4 +1,4 @@
-## BugBounty Commands
+# BugBounty Commands
 
 ## Introduction
 
@@ -7,5 +7,7 @@ I always have to search for commands everytime I start to hunt for bugs.Therefor
 
 If you think any important commands were not listed in this repository, feel free contribute. 
 
-** Resources **
-[ SQLMAP COMMANDS ] (https://github.com/Aspasht/BugBounty/blob/main/sqlmap_commands.txt)
+## Resources 
+
+-[ SQLMAP COMMANDS ] 
+(https://github.com/Aspasht/BugBounty/blob/main/sqlmap_commands.txt)
