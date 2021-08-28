@@ -30,6 +30,6 @@ If you think any important commands were not listed in this repository, feel fre
 
 
 #### Refrences:
-  https://github.com/dwisiswant0/awesome-oneliner-bugbounty
-  https://github.com/XalfiE/Bug-Bounty-Oneliners
+  	https://github.com/dwisiswant0/awesome-oneliner-bugbounty
+  	https://github.com/XalfiE/Bug-Bounty-Oneliners
   
