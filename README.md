@@ -3,9 +3,9 @@
 ## Introduction
 
 
-I always have to search for commands everytime I start to hunt for bugs.Therefore, I created this repository to list all useful commands of different useful tools. My intention is to make a repo containing all the important commands used for Bug Bounty. 
+I always have to search for commands everytime I start to hunt for bugs.Therefore, I created this repository to list all useful commands of different tools. My intention is to make a repository containing all the important commands, technique and oneliners helpful for reconnaissance. 
 
-If you think any important commands were not listed in this repository, feel free contribute. 
+If you think any important commands were not listed in this repository, feel free to contribute. 
 
 ## Extracting endpoints from JavaScript files:
 	cat main.js | grep -oh "\"\/[a-zA-Z0-9_/?=&]*\"" | sed -e 's/^"//' -e 's/"$//' | sort -u
