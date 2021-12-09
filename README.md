@@ -47,6 +47,49 @@ If you think any important commands were not listed in this repository, feel fre
 	\/\evil.com
 	/	/evil.com (That's a Tab Key / ASCII 0x09)
 	\	\evil.com (That's a Tab Key / ASCII 0x09)
+  ## Possible Host Header Injection
+  	Host: emalple.com:1234"--><h1>TestScript<script>alert(1);
+	X-Forwarded-Host: example.com/.example2.com
+	Host: "><script>alert(1)</script>
+	X-FORWARDED-FOR: example.com
+	X-Forwarded-For: example.com
+	Host: vulnerable-website.com:bad-stuff-here
+	HTTP_FORWARDED: example.com
+	HTTP_CLIENT_IP: 127.0.0.1
+	HTTP_FORWARDED_FOR: exmaple.com
+	HTTP_X_FORWARDED: example.com	
+	HTTP_X_FORWARDED_FOR: example.com
+	Front-End-Https: on
+	Proxy-Connection: keep-alive
+	X-Att-Deviceid: GT-P7320/P7320XXLPG
+	X-CSRFToken: DECAFC0FFEEBAD
+	X-Correlation-ID: f058ebd6-02f7-4d3f-942e-904344e8cde5
+	X-Csrf-Token: DECAFC0FFEEBAD
+	X-XSRF-TOKEN: DECAFC0FFEEBAD
+	X-Do-Not-Track: 1
+	X-Forwarded-For: 127.0.0.1
+	X-Forwarded-For: client1, proxy1, proxy2
+	X-Forwarded-Proto: https
+	X-HTTP-Method-Override: PUT
+	X-ProxyUser-Ip: 127.0.0.1
+	X-Request-ID: f058ebd6-02f7-4d3f-942e-904344e8cde5
+	X-Requested-With: XMLHttpRequest
+	X-UIDH: 31337DEADBEEFCAFE
+	X-Wap-Profile: http://wap.samsungmobile.com/uaprof/SGH-I777.xml
+	X-XSRF-TOKEN: DECAFC0FFEEBAD
+	Client-IP: 127.0.0.1
+	True-Client-IP: 127.0.0.1
+	Cluster-Client-IP: 127.0.0.
+	
+	
+	
+	Note: You can input multiple host header to test.
+		Example: Host: example.com
+		         Host: attacker.com
+		Example:  Host: example.com {Remember space before Host! Sometimes this can bypass validation}
+			 Host: attacker.com
+	Try to input absolute url to the URL path.
+		Example: Get https://example.com/index.html?<original path>
 
 #### Refrences:
   - https://github.com/dwisiswant0/awesome-oneliner-bugbounty
