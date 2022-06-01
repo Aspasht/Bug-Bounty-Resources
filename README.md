@@ -90,6 +90,36 @@ If you think any important commands were not listed in this repository, feel fre
 			 Host: attacker.com
 	Try to input absolute url to the URL path.
 		Example: Get https://example.com/index.html?<original path>
+## Command Injection reserve commands
+## node js
+	spawn
+	forc
+	exec
+	eval
+
+### php
+	system
+	shell_exec
+	exec
+	proc_open
+	popen
+	eval
+	passthru
+
+### pyhton
+	exec
+	eval
+	os.system
+	os.popen
+	subprocess.*
+	pickle
+	yaml.load
+
+## C#
+	ProcessStartinfo
+	ParameterizedThreadStart
+	Process.Start
+	Exec
 
 #### Refrences:
   - https://github.com/dwisiswant0/awesome-oneliner-bugbounty
